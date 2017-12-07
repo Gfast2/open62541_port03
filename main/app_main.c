@@ -40,24 +40,28 @@ void blink_task(void *pvParameter)
 void opcua_task(void *pvParameter) {
 
     ESP_LOGI(TAG, "Fire up OPC UA Server.");
-    UA_ServerConfig config = UA_ServerConfig_standard;
+    // UA_ServerConfig config = UA_ServerConfig_standard;
+    UA_ServerConfig *config = UA_ServerConfig_new_default();
+    /*
     UA_ServerNetworkLayer nl = 
     UA_ServerNetworkLayerTCP(UA_ConnectionConfig_standard, 4840);
     config.networkLayers = &nl;
     config.networkLayersSize = 1;
+    */
 
     UA_Server *server = UA_Server_new(config);
 
     // server started, Code will be blocked here till running is set to false.
-    UA_Server_run(server, &running); 
+    UA_StatusCode retval = UA_Server_run(server, &running); 
 
     ESP_LOGI(TAG, "Now going to stop the server.");
     // UA_StatusCode retval = UA_Server_run(server, &running);
     UA_Server_delete(server);
+    UA_ServerConfig_delete(config);
     // UA_ServerConfig_delete(config);
     // return (int)retval;
-    nl.deleteMembers(&nl);
-    ESP_LOGI(TAG, "opcua_task going to return");
+    // nl.deleteMembers(&nl);
+    ESP_LOGI(TAG, "opcua_task going to return with UA_StatusCode: %d", retval);
     // return 0;
     vTaskDelete(NULL);
 }
