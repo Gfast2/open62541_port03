@@ -1,6 +1,6 @@
 /* THIS IS A SINGLE-FILE DISTRIBUTION CONCATENATED FROM THE OPEN62541 SOURCES
  * visit http://open62541.org/ for information about this software
- * Git-Revision: v0.2-823-g41067b2
+ * Git-Revision: v0.2-824-g683c3122
  */
 
 /*
@@ -36,7 +36,7 @@ extern "C" {
 #define UA_OPEN62541_VER_MINOR 3
 #define UA_OPEN62541_VER_PATCH 0
 #define UA_OPEN62541_VER_LABEL "dev" /* Release candidate label, etc. */
-#define UA_OPEN62541_VER_COMMIT "v0.2-823-g41067b2"
+#define UA_OPEN62541_VER_COMMIT "v0.2-824-g683c3122"
 
 /**
  * Feature Options
@@ -3122,7 +3122,7 @@ UA_StatusCode_explanation(UA_StatusCode code) {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_types_generated.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:24 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 #ifdef __cplusplus
@@ -5704,7 +5704,7 @@ typedef struct {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_types_generated_handling.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:24 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 #ifdef __cplusplus

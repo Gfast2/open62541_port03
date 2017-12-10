@@ -1,6 +1,6 @@
 /* THIS IS A SINGLE-FILE DISTRIBUTION CONCATENATED FROM THE OPEN62541 SOURCES
  * visit http://open62541.org/ for information about this software
- * Git-Revision: v0.2-823-g41067b2
+ * Git-Revision: v0.2-824-g683c3122
  */
 
 /*
@@ -970,7 +970,7 @@ UA_findDataTypeByBinary(const UA_NodeId *typeId);
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_types_generated_encoding_binary.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:24 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 /* Boolean */
@@ -2926,7 +2926,7 @@ UA_QueryFirstRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_Q
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:25 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 #ifdef __cplusplus
@@ -3098,7 +3098,7 @@ typedef struct {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated_handling.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:25 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 #ifdef __cplusplus
@@ -3430,7 +3430,7 @@ UA_SecureConversationMessageHeader_delete(UA_SecureConversationMessageHeader *p)
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated_encoding_binary.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:25 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 /* SecureConversationMessageAbortBody */
@@ -8176,7 +8176,7 @@ UA_calcSizeBinary(void *p, const UA_DataType *type) {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_types_generated.c" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:24 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 /* Boolean */
@@ -16127,7 +16127,7 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated.c" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VirtualBox by user gfast2 at 2017-12-07 04:00:25 */
+ * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
 
 
 /* SecureConversationMessageAbortBody */
@@ -30007,11 +30007,14 @@ process_RegisterServer(UA_Server *server, UA_Session *session,
         }
         memcpy(filePath, requestServer->semaphoreFilePath.data, requestServer->semaphoreFilePath.length );
         filePath[requestServer->semaphoreFilePath.length] = '\0';
+	// Temporaryly comment out for porting job.
+	// Should checkout how to use other avaialble functions as workaround.
+	/*
         if(access( filePath, 0 ) == -1) {
             responseHeader->serviceResult = UA_STATUSCODE_BADSEMPAHOREFILEMISSING;
             UA_free(filePath);
             return;
-        }
+        }*/
         UA_free(filePath);
 #else
         UA_LOG_WARNING(server->config.logger, UA_LOGCATEGORY_CLIENT,
@@ -30144,7 +30147,10 @@ void UA_Discovery_cleanupTimedOut(UA_Server *server, UA_DateTime nowMonotonic) {
                 if(fp)
                     fclose(fp);
 #else
-                semaphoreDeleted = access( filePath, 0 ) == -1;
+		// access() on success 0 is returned, on error -1 is returned
+		// In order to try the porting job, here I fake it all succeed
+                // semaphoreDeleted = access( filePath, 0 ) == -1;
+                semaphoreDeleted = 0;
 #endif
                 UA_free(filePath);
             } else {
