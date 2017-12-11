@@ -1,6 +1,6 @@
 /* THIS IS A SINGLE-FILE DISTRIBUTION CONCATENATED FROM THE OPEN62541 SOURCES
  * visit http://open62541.org/ for information about this software
- * Git-Revision: v0.2-824-g683c3122
+ * Git-Revision: v0.2-825-g2b3d24f
  */
 
 /*
@@ -783,18 +783,18 @@ extern "C" {
  * with ``UA_ENABLE_MULTITHREADING`` disabled. Otherwise, if multiple clients
  * run in separate threads, race conditions may occur via global variables in
  * the encoding layer. */
-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
-# define UA_THREAD_LOCAL _Thread_local /* C11 */
-#elif defined(__cplusplus) && __cplusplus > 199711L
-# define UA_THREAD_LOCAL thread_local /* C++11 */
-#elif defined(__GNUC__) && !defined(_WRS_KERNEL) //defining __thread gave error of missing __tls_lookup in VxWorks
-# define UA_THREAD_LOCAL __thread /* GNU extension */
-#elif defined(_MSC_VER)
-# define UA_THREAD_LOCAL __declspec(thread) /* MSVC extension */
-#else
-# warning The compiler does not support thread-local variables
+//#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+//# define UA_THREAD_LOCAL _Thread_local /* C11 */
+//#elif defined(__cplusplus) && __cplusplus > 199711L
+//# define UA_THREAD_LOCAL thread_local /* C++11 */
+//#elif defined(__GNUC__) && !defined(_WRS_KERNEL) //defining __thread gave error of missing __tls_lookup in VxWorks
+//# define UA_THREAD_LOCAL __thread /* GNU extension */
+//#elif defined(_MSC_VER)
+//# define UA_THREAD_LOCAL __declspec(thread) /* MSVC extension */
+//#else
+//# warning The compiler does not support thread-local variables
 # define UA_THREAD_LOCAL
-#endif
+//#endif
 
 /* Integer Shortnames
  * ------------------
@@ -970,7 +970,7 @@ UA_findDataTypeByBinary(const UA_NodeId *typeId);
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_types_generated_encoding_binary.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
+ * on host gfast2-VirtualBox by user gfast2 at 2017-12-11 02:55:38 */
 
 
 /* Boolean */
@@ -2926,7 +2926,7 @@ UA_QueryFirstRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_Q
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
+ * on host gfast2-VirtualBox by user gfast2 at 2017-12-11 02:55:40 */
 
 
 #ifdef __cplusplus
@@ -3098,7 +3098,7 @@ typedef struct {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated_handling.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
+ * on host gfast2-VirtualBox by user gfast2 at 2017-12-11 02:55:40 */
 
 
 #ifdef __cplusplus
@@ -3430,7 +3430,7 @@ UA_SecureConversationMessageHeader_delete(UA_SecureConversationMessageHeader *p)
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated_encoding_binary.h" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
+ * on host gfast2-VirtualBox by user gfast2 at 2017-12-11 02:55:40 */
 
 
 /* SecureConversationMessageAbortBody */
@@ -8176,7 +8176,7 @@ UA_calcSizeBinary(void *p, const UA_DataType *type) {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_types_generated.c" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
+ * on host gfast2-VirtualBox by user gfast2 at 2017-12-11 02:55:38 */
 
 
 /* Boolean */
@@ -16127,7 +16127,7 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
 /*********************************** amalgamated original file "/home/gfast2/workspace/open62541_port03/build/open62541/src_generated/ua_transport_generated.c" ***********************************/
 
 /* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/gfast2/workspace/open62541_port03/components/open62541/open62541/tools/generate_datatypes.py
- * on host gfast2-VB by user gfast2 at 2017-12-09 08:55:48 */
+ * on host gfast2-VirtualBox by user gfast2 at 2017-12-11 02:55:40 */
 
 
 /* SecureConversationMessageAbortBody */
@@ -35754,7 +35754,7 @@ ServerNetworkLayerTCP_add(ServerNetworkLayerTCP *layer, UA_Int32 newsockfd,
     // It's used for "Peer Name Resolution Protocol"
     // So for this purpose I'd fake my "Inter90" (windows PC) name first.
     int res = 0;
-    sprintf(remote_name, "Inter90");
+    sprintf(remote_name, "192.168.178.107");
 
     if(res == 0) {
         UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_NETWORK,
